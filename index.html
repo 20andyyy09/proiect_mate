@@ -2,19 +2,42 @@
 <html lang="ro">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.    <meta name="description" content="Rezultatele unui sondaj despre timpul de studiu săptămânal al elevilor, cu statistici, grafic și recomandări educaționale.">
+    <meta name="theme-color" content="#070914">
     <title>Rezultatele Sondajului: Timp de studiu săptămânal</title>
-    <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="style.css?v=20260427-compact-header">
     <link rel="icon" type="image/png" href="sigla-lg.png">
 </head>
 <body>
-    <main>
-        <section class="hero" id="results">
+    <a class="skip-link" href="#content">Sari la conținut</a>
+    <div class="reading-progress" aria-hidden="true"><span></span></div>
+
+    <header class="site-header">
+        <div class="container header-inner">
+            <a class="brand" href="#results" aria-label="Rezultatele sondajului">
+                <img class="brand-mark" src="sigla-lg.png" alt="" width="48" height="48" decoding="async">
+                <span>Studiu săptămânal</span>
+            </a>
+            <nav class="site-nav" aria-label="Secțiuni principale">
+                <a href="#results">Rezultate</a>
+                <a href="#chart">Grafic</a>
+                <a href="#insights">Observații</a>
+                <a href="#conclusion">Recomandări</a>
+            </nav>
+        </div>
+    </header>
+
+    <main id="content">
+        <section class="hero" id="results" aria-labelledby="results-title">
             <div class="container">
                 <div class="hero-layout">
                     <div class="survey-intro">
-                        <h1>Rezultatele Sondajului</h1>
+                        <h1 id="results-title">Rezultatele Sondajului</h1>
                         <p class="survey-description">Analiza timpului alocat pentru învățare în afara orelor de școală (săptămânal)</p>
+                        <div class="hero-actions" aria-label="Legături rapide">
+                            <a class="btn btn-primary" href="#chart">Vezi graficul</a>
+                            <a class="btn btn-secondary" href="#insights">Observații cheie</a>
+                        </div>
                     </div>
 
                     <div class="study-visual" aria-hidden="true">
@@ -45,65 +68,110 @@
                 <div class="results-summary">
                     <div class="result-stats">
                         <div class="stat-card">
-                            <strong data-target="150" data-suffix="">150</strong>
+                            <strong data-stat="total-responses" data-target="150" data-suffix="">150</strong>
                             <span>Răspunsuri totale</span>
                         </div>
                         <div class="stat-card">
-                            <strong data-target="45" data-suffix="%">45%</strong>
+                            <strong data-stat="study-active" data-target="75" data-suffix="%">75%</strong>
                             <span>Studiază 1+ ore/săptămână</span>
                         </div>
                         <div class="stat-card">
-                            <strong data-target="2.3" data-suffix="h">2.3h</strong>
-                            <span>Media timpului de studiu</span>
+                            <strong data-stat="average-hours" data-target="3.6" data-suffix="h">3.6h</strong>
+                            <span>Media estimată de studiu</span>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section class="section-light" id="chart">
+        <section class="section-light" id="chart" aria-labelledby="chart-title">
             <div class="container results-grid">
                 <div class="result-summary">
-                    <h2>Distribuția răspunsurilor</h2>
+                    <h2 id="chart-title">Distribuția răspunsurilor</h2>
                     <p>Rezultatele arată cât timp alocă elevii pentru studiu în afara programului școlar.</p>
                 </div>
                 <div class="chart-area">
-                    <canvas id="pieChart" aria-label="Distribuția timpului de studiu" role="img"></canvas>
+                    <canvas id="pieChart" aria-label="Distribuția timpului de studiu" aria-describedby="chartSummary" role="img"></canvas>
+                    <p class="sr-only" id="chartSummary">Graficul prezintă distribuția procentuală a timpului de studiu săptămânal.</p>
+                    <div class="data-table-wrap">
+                        <table class="data-table">
+                            <caption>Datele sondajului</caption>
+                            <thead>
+                                <tr>
+                                    <th scope="col">Interval</th>
+                                    <th scope="col">Procent</th>
+                                    <th scope="col">Elevi estimați</th>
+                                </tr>
+                            </thead>
+                            <tbody id="resultsTableBody">
+                                <tr>
+                                    <td><span class="legend-dot" style="--dot-color: #ff7a7a"></span>Deloc</td>
+                                    <td>10%</td>
+                                    <td>15</td>
+                                </tr>
+                                <tr>
+                                    <td><span class="legend-dot" style="--dot-color: #ffca6a"></span>Sub o oră</td>
+                                    <td>15%</td>
+                                    <td>23</td>
+                                </tr>
+                                <tr>
+                                    <td><span class="legend-dot" style="--dot-color: #48e6ff"></span>1-3 ore</td>
+                                    <td>25%</td>
+                                    <td>38</td>
+                                </tr>
+                                <tr>
+                                    <td><span class="legend-dot" style="--dot-color: #76e4a0"></span>3-5 ore</td>
+                                    <td>15%</td>
+                                    <td>23</td>
+                                </tr>
+                                <tr>
+                                    <td><span class="legend-dot" style="--dot-color: #5d81ff"></span>5-7 ore</td>
+                                    <td>20%</td>
+                                    <td>30</td>
+                                </tr>
+                                <tr>
+                                    <td><span class="legend-dot" style="--dot-color: #a877dd"></span>7+ ore</td>
+                                    <td>15%</td>
+                                    <td>23</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <section class="section-dark" id="insights">
+        <section class="section-dark" id="insights" aria-labelledby="insights-title">
             <div class="container insights-grid">
                 <div>
                     <p class="eyebrow">Observații cheie</p>
-                    <h2>Ce ne spun datele</h2>
+                    <h2 id="insights-title">Ce ne spun datele</h2>
                     <p>Analiza rezultatelor evidențiază tendințe importante în comportamentul de studiu al elevilor.</p>
                 </div>
                 <div class="insight-cards">
                     <article class="insight-card">
-                        <h3>Studenți dedicați</h3>
-                        <p>45% dintre elevi alocă cel puțin o oră pe săptămână pentru studiu suplimentar, demonstrând angajament față de învățare.</p>
-                        <div class="insight-meter" aria-hidden="true"><span style="--value: 45%"></span></div>
+                        <h3>Elevi activi</h3>
+                        <p><strong data-inline="study-active">75%</strong> dintre elevi alocă cel puțin o oră pe săptămână pentru studiu suplimentar.</p>
+                        <div class="insight-meter" aria-hidden="true"><span data-meter="study-active" style="--value: 75%"></span></div>
                     </article>
                     <article class="insight-card">
-                        <h3>Oportunități de îmbunătățire</h3>
-                        <p>30% dintre elevi nu alocă timp pentru studiu în afara școlii, sugerând necesitatea unor strategii de motivare.</p>
-                        <div class="insight-meter" aria-hidden="true"><span style="--value: 30%"></span></div>
+                        <h3>Sprijin țintit</h3>
+                        <p><strong data-inline="no-study">10%</strong> dintre elevi nu alocă timp pentru studiu în afara școlii, deci au nevoie de sprijin clar și rapid.</p>
+                        <div class="insight-meter" aria-hidden="true"><span data-meter="no-study" style="--value: 10%"></span></div>
                     </article>
                     <article class="insight-card">
-                        <h3>Distribuția echilibrată</h3>
-                        <p>Majoritatea elevilor (55%) studiază între 1-5 ore pe săptămână, indicând un echilibru sănătos între școală și activități personale.</p>
-                        <div class="insight-meter" aria-hidden="true"><span style="--value: 55%"></span></div>
+                        <h3>Ritm susținut</h3>
+                        <p><strong data-inline="intensive-study">35%</strong> dintre elevi studiază peste 5 ore pe săptămână, semn că există un grup foarte implicat.</p>
+                        <div class="insight-meter" aria-hidden="true"><span data-meter="intensive-study" style="--value: 35%"></span></div>
                     </article>
                 </div>
             </div>
         </section>
 
-        <section class="section-light" id="conclusion">
+        <section class="section-light" id="conclusion" aria-labelledby="conclusion-title">
             <div class="container section-grid">
                 <div>
-                    <h2>Concluzii și recomandări</h2>
+                    <h2 id="conclusion-title">Concluzii și recomandări</h2>
                     <p>Rezultatele acestui sondaj oferă perspective valoroase pentru îmbunătățirea strategiilor educaționale.</p>
                 </div>
                 <div class="recommendations">
@@ -127,8 +195,11 @@
     <footer class="site-footer">
         <div class="container footer-inner">
             <p>© 2026 Proiect Educațional - Analiza timpului de studiu</p>
-            <ul>
-                <li>Elevi: Dogaru Luca, Păștin Cristian, Voicu Denisa, Dumitrescu Maria, Mărculescu Alissia, Tănase Radu, Tufan Matei, Petre Daria, Grigore Gabriel, Bolovăneanu Andi</li>
+            <p class="footer-team">Elevi: Dogaru Luca, Păștin Cristian, Voicu Denisa, Dumitrescu Maria, Mărculescu Alissia, Tănase Radu, Tufan Matei, Petre Daria, Grigore Gabriel, Bolovăneanu Andi</p>
+        </div>
+    </footer>
+    <script src="scripts.js?v=20260427-compact-header"></script>
+ Grigore Gabriel, Bolovăneanu Andi</li>
             </ul>
         </div>
     </footer>
