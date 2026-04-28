@@ -1,76 +1,92 @@
 // Editeaza aici contributiile echipei.
-// Completeaza campurile `role` si `contribution` pentru fiecare membru.
+// Completeaza campurile `contribution.badge` si `contribution.text` pentru fiecare membru.
+// Badge-uri disponibile: Documentare, Design, Prezentare, Calcule, Dezvoltarea site-ului.
 // Daca vrei mai multe paragrafe intr-o contributie, scrie textul pe linii separate.
 const teamContributions = [
     {
         index: '01',
         name: 'Dogaru Luca',
-        role: '',
-        contribution: ''
+        contribution: {
+            badge: 'prezentare',
+            text: ''
+        }
     },
     {
         index: '02',
         name: 'Pastin Cristian',
-        role: '',
-        contribution: ''
+        contribution: {
+            badge: 'prezentare',
+            text: ''
+        }
     },
     {
         index: '03',
         name: 'Voicu Denisa',
-        role: '',
-        contribution: ''
+        contribution: {
+            badge: 'calcule',
+            text: ''
+        }
     },
     {
         index: '04',
         name: 'Dumitrescu Maria',
-        role: '',
-        contribution: ''
+        contribution: {
+            badge: 'documentare',
+            text: ''
+        }
     },
     {
         index: '05',
         name: 'Marculescu Alissia',
-        role: '',
-        contribution: ''
+        contribution: {
+            badge: 'documentare',
+            text: ''
+        }
     },
     {
         index: '06',
         name: 'Tanase Radu',
-        role: '',
-        contribution: ''
+        contribution: {
+            badge: 'documentare',
+            text: ''
+        }
     },
     {
         index: '07',
         name: 'Tufan Matei',
-        role: '',
-        contribution: ''
+        contribution: {
+            badge: 'prezentare',
+            text: ''
+        }
     },
     {
         index: '08',
         name: 'Petre Daria',
-        role: '',
-        contribution: ''
+        contribution: {
+            badge: 'documentare',
+            text: ''
+        }
     },
     {
         index: '09',
         name: 'Grigore Gabriel',
-        role: '',
-        contribution: ''
+        contribution: {
+            badge: 'design',
+            text: ''
+        }
     },
     {
         index: '10',
         name: 'Bolovaneanu Andi',
-        role: '',
-        contribution: ''
+        contribution: {
+            badge: 'dezvoltare',
+            text: ''
+        }
     }
 ];
 
 document.addEventListener('DOMContentLoaded', () => {
     const membersGrid = document.getElementById('membersGrid');
-    const completedMembers = document.getElementById('completedMembers');
-
-    function hasContribution(member) {
-        return Boolean(member.role.trim() || member.contribution.trim());
-    }
 
     function escapeHtml(value) {
         return value
@@ -79,6 +95,54 @@ document.addEventListener('DOMContentLoaded', () => {
             .replaceAll('>', '&gt;')
             .replaceAll('"', '&quot;')
             .replaceAll("'", '&#39;');
+    }
+
+    function getContribution(member) {
+        if (typeof member.contribution === 'string') {
+            return {
+                badge: '',
+                text: member.contribution.trim()
+            };
+        }
+
+        const contribution = member.contribution || {};
+        return {
+            badge: String(contribution.badge || '').trim(),
+            text: String(contribution.text || '').trim()
+        };
+    }
+
+    function hasContribution(member) {
+        const contribution = getContribution(member);
+        return Boolean(contribution.badge || contribution.text);
+    }
+
+    function getBadgeClass(badge) {
+        const normalizedBadge = badge
+            .toLowerCase()
+            .normalize('NFD')
+            .replace(/[\u0300-\u036f]/g, '')
+            .replaceAll(' ', '-');
+
+        const badgeClassMap = {
+            documentare: 'role-badge-documentare',
+            design: 'role-badge-design',
+            prezentare: 'role-badge-prezentare',
+            calcule: 'role-badge-calcule',
+            dezvoltare: 'role-badge-site',
+            'dezvoltarea-site-ului': 'role-badge-site'
+        };
+
+        return badgeClassMap[normalizedBadge] || '';
+    }
+
+    function formatBadge(badge) {
+        if (!badge) return '';
+
+        const badgeClass = getBadgeClass(badge);
+        const label = badge.toLocaleLowerCase('ro-RO');
+        const formattedBadge = `${label.charAt(0).toLocaleUpperCase('ro-RO')}${label.slice(1)}`;
+        return `<span class="role-badge${badgeClass ? ` ${badgeClass}` : ''}">${escapeHtml(formattedBadge)}</span>`;
     }
 
     function formatParagraphs(value, fallback) {
@@ -93,30 +157,40 @@ document.addEventListener('DOMContentLoaded', () => {
             .join('');
     }
 
+    function formatContribution(member) {
+        const contribution = getContribution(member);
+
+        return `
+            <div class="member-block">
+                <div class="member-contribution-head">
+                    <span class="member-label">Contributie</span>
+                    ${formatBadge(contribution.badge)}
+                </div>
+                ${formatParagraphs(contribution.text, 'Contributia nu este afisata momentan.')}
+            </div>
+        `;
+    }
+
+    function getMemberCardClass(member) {
+        const contribution = getContribution(member);
+        const badgeClass = getBadgeClass(contribution.badge);
+        return badgeClass ? ` ${badgeClass}` : '';
+    }
+
     function renderMembers() {
         if (!membersGrid) return;
 
-        const completed = teamContributions.filter(hasContribution).length;
-
         membersGrid.innerHTML = teamContributions.map((member) => `
-            <article class="member-card${hasContribution(member) ? ' is-complete' : ''}">
+            <article class="member-card${hasContribution(member) ? ' is-complete' : ''}${getMemberCardClass(member)}">
                 <div class="member-header">
                     <span class="member-index">${member.index}</span>
                     <div class="member-heading">
                         <h3 class="member-name">${escapeHtml(member.name)}</h3>
-                        <p class="member-role">${escapeHtml(member.role.trim() || 'Rol nespecificat')}</p>
                     </div>
                 </div>
-                <div class="member-block">
-                    <span class="member-label">Contributie</span>
-                    ${formatParagraphs(member.contribution, 'Contributia nu este afisata momentan.')}
-                </div>
+                ${formatContribution(member)}
             </article>
         `).join('');
-
-        if (completedMembers) {
-            completedMembers.textContent = `${completed}/${teamContributions.length}`;
-        }
     }
 
     renderMembers();

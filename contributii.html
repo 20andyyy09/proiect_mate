@@ -6,7 +6,7 @@
     <meta name="description" content="Pagina pentru completarea contributiilor fiecarui membru din proiect.">
     <meta name="theme-color" content="#070914">
     <title>Contributiile Echipei</title>
-    <link rel="stylesheet" href="style.css?v=20260428-no-music">
+    <link rel="stylesheet" href="style.css?v=20260428-contribution-badges">
     <link rel="icon" type="image/png" href="sigla-lg.png">
 </head>
 <body class="contributions-page">
@@ -28,6 +28,7 @@
                 <a href="index.html">Acasa</a>
                 <a href="#overview">Panou</a>
                 <a href="#team-board">Echipa</a>
+                <a href="cum-am-lucrat.html">Cum am lucrat</a>
             </nav>
         </div>
     </header>
@@ -37,23 +38,28 @@
             <div class="container">
                 <div class="contrib-hero-panel">
                     <div class="contrib-hero-copy">
-                        <p class="eyebrow">Coordonare proiect</p>
+                        <p class="eyebrow">Roluri proiect</p>
                         <h1 id="overview-title">Contributiile echipei</h1>
                         <p class="contrib-lead">Panoul centralizeaza rolurile si contributiile fiecarui membru al echipei intr-o forma clara, pregatita pentru prezentare.</p>
                         <div class="hero-actions" aria-label="Actiuni rapide">
                             <a class="btn btn-primary" href="#team-board">Vezi contributiile</a>
-                            <a class="btn btn-secondary" href="index.html">Inapoi la prezentare</a>
+                            <a class="btn btn-secondary" href="cum-am-lucrat.html">Cum am lucrat</a>
                         </div>
                     </div>
 
                     <aside class="contrib-summary" aria-label="Rezumatul paginii">
                         <div class="summary-card">
-                            <span class="summary-label">Fise completate</span>
-                            <strong id="completedMembers">0/10</strong>
-                            <p>Panoul arata cate profile au detalii afisate in acest moment.</p>
+                            <span class="summary-label">Roluri</span>
+                            <div class="role-badge-list" aria-label="Badge-uri disponibile pentru roluri">
+                                <span class="role-badge role-badge-documentare">Documentare</span>
+                                <span class="role-badge role-badge-design">Design</span>
+                                <span class="role-badge role-badge-prezentare">Prezentare</span>
+                                <span class="role-badge role-badge-calcule">Calcule</span>
+                                <span class="role-badge role-badge-site role-badge-wide">Dezvoltarea site-ului</span>
+                            </div>
                         </div>
                         <div class="summary-card">
-                            <span class="summary-label">Panou</span>
+                            <span class="summary-label">Panou echipa</span>
                             <p>Fiecare card evidentiaza rolul principal si contributia fiecarui membru din proiect.</p>
                         </div>
                     </aside>
@@ -81,6 +87,6 @@
     </footer>
 
     <script src="scripts.js?v=20260428-nav-fix"></script>
-    <script src="contributii.js?v=20260428-no-music"></script>
+    <script src="contributii.js?v=20260428-contribution-badges"></script>
 </body>
 </html>

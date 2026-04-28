@@ -8,9 +8,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Update this array to change the pie chart labels, values, and colors.
     const surveyResults = [
-        { label: 'Deloc', value: 10, color: '#ff7a7a', hoursEstimate: 0 },
+        { label: 'Deloc', value: 5, color: '#ff7a7a', hoursEstimate: 0 },
         { label: 'Sub o or\u0103', value: 15, color: '#ffca6a', hoursEstimate: 0.5 },
-        { label: '1-3 ore', value: 25, color: '#48e6ff', hoursEstimate: 2 },
+        { label: '1-3 ore', value: 35, color: '#48e6ff', hoursEstimate: 2 },
         { label: '3-5 ore', value: 15, color: '#76e4a0', hoursEstimate: 4 },
         { label: '5-7 ore', value: 20, color: '#5d81ff', hoursEstimate: 6 },
         { label: '7+ ore', value: 15, color: '#a877dd', hoursEstimate: 8 }
