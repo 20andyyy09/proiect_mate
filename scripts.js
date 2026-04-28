@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const progressIndicator = document.querySelector('.reading-progress span');
     const navLinks = Array.from(document.querySelectorAll('.site-nav a'));
     const totalResponses = 150;
+    const currentPage = getPageName(window.location.href);
 
     // Update this array to change the pie chart labels, values, and colors.
     const surveyResults = [
@@ -181,6 +182,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function resizeCanvas() {
+        if (!pieCanvas) return;
+
         const parent = pieCanvas.parentElement;
         const rect = parent.getBoundingClientRect();
         const ratio = window.devicePixelRatio || 1;
@@ -307,6 +310,25 @@ document.addEventListener('DOMContentLoaded', () => {
         };
     };
 
+    function getPageName(urlValue) {
+        const url = new URL(urlValue, window.location.href);
+        const pathname = decodeURIComponent(url.pathname || '');
+        const segments = pathname.split('/').filter(Boolean);
+        return segments.length ? segments[segments.length - 1] : 'index.html';
+    }
+
+    function getSectionForLink(link) {
+        if (!link.hash || getPageName(link.href) !== currentPage) {
+            return null;
+        }
+
+        try {
+            return document.querySelector(link.hash);
+        } catch (error) {
+            return null;
+        }
+    }
+
     function updateProgressAndNavigation() {
         const scrollableHeight = document.documentElement.scrollHeight - window.innerHeight;
         const progress = scrollableHeight > 0 ? window.scrollY / scrollableHeight : 0;
@@ -316,13 +338,14 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         const activeLink = navLinks
-            .map((link) => ({ link, section: document.querySelector(link.hash) }))
+            .map((link) => ({ link, section: getSectionForLink(link) }))
             .filter((item) => item.section)
             .reverse()
             .find((item) => item.section.getBoundingClientRect().top <= 130);
 
         navLinks.forEach((link) => {
-            const isActive = Boolean(activeLink && activeLink.link === link);
+            const isCurrentPageLink = !link.hash && getPageName(link.href) === currentPage;
+            const isActive = Boolean(activeLink && activeLink.link === link) || (!activeLink && isCurrentPageLink);
             link.classList.toggle('is-active', isActive);
             if (isActive) {
                 link.setAttribute('aria-current', 'page');

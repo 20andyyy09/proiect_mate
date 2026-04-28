@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Pagina pentru completarea contributiilor fiecarui membru din proiect.">
+    <meta name="theme-color" content="#070914">
+    <title>Contributiile Echipei</title>
+    <link rel="stylesheet" href="style.css?v=20260428-no-music">
+    <link rel="icon" type="image/png" href="sigla-lg.png">
+</head>
+<body class="contributions-page">
+    <a class="skip-link" href="#content">Sari la continut</a>
+    <div class="video-shell" aria-hidden="true">
+        <video autoplay muted loop playsinline preload="metadata">
+            <source src="nikola_tesla_hd.mp4" type="video/mp4">
+        </video>
+    </div>
+    <div class="reading-progress" aria-hidden="true"><span></span></div>
+
+    <header class="site-header">
+        <div class="container header-inner">
+            <a class="brand" href="index.html" aria-label="Inapoi la prezentare">
+                <img class="brand-mark" src="sigla-lg.png" alt="" width="48" height="48" decoding="async">
+                <span>Studiu saptamanal</span>
+            </a>
+            <nav class="site-nav" aria-label="Navigatie principala">
+                <a href="index.html">Acasa</a>
+                <a href="#overview">Panou</a>
+                <a href="#team-board">Echipa</a>
+            </nav>
+        </div>
+    </header>
+
+    <main id="content">
+        <section class="hero contrib-hero" id="overview" aria-labelledby="overview-title">
+            <div class="container">
+                <div class="contrib-hero-panel">
+                    <div class="contrib-hero-copy">
+                        <p class="eyebrow">Coordonare proiect</p>
+                        <h1 id="overview-title">Contributiile echipei</h1>
+                        <p class="contrib-lead">Panoul centralizeaza rolurile si contributiile fiecarui membru al echipei intr-o forma clara, pregatita pentru prezentare.</p>
+                        <div class="hero-actions" aria-label="Actiuni rapide">
+                            <a class="btn btn-primary" href="#team-board">Vezi contributiile</a>
+                            <a class="btn btn-secondary" href="index.html">Inapoi la prezentare</a>
+                        </div>
+                    </div>
+
+                    <aside class="contrib-summary" aria-label="Rezumatul paginii">
+                        <div class="summary-card">
+                            <span class="summary-label">Fise completate</span>
+                            <strong id="completedMembers">0/10</strong>
+                            <p>Panoul arata cate profile au detalii afisate in acest moment.</p>
+                        </div>
+                        <div class="summary-card">
+                            <span class="summary-label">Panou</span>
+                            <p>Fiecare card evidentiaza rolul principal si contributia fiecarui membru din proiect.</p>
+                        </div>
+                    </aside>
+                </div>
+            </div>
+        </section>
+
+        <section class="section-light members-section" id="team-board" aria-labelledby="team-board-title">
+            <div class="container">
+                <div class="result-summary">
+                    <h2 id="team-board-title">Fisele membrilor</h2>
+                    <p>Mai jos sunt prezentate rolurile si contributiile fiecarui membru al echipei.</p>
+                </div>
+
+                <div class="members-grid" id="membersGrid"></div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer-inner">
+            <p>&copy; 2026 Proiect Educational - Panou de contributii</p>
+            <p class="footer-team">Echipa: Dogaru Luca, Pastin Cristian, Voicu Denisa, Dumitrescu Maria, Marculescu Alissia, Tanase Radu, Tufan Matei, Petre Daria, Grigore Gabriel, Bolovaneanu Andi</p>
+        </div>
+    </footer>
+
+    <script src="scripts.js?v=20260428-nav-fix"></script>
+    <script src="contributii.js?v=20260428-no-music"></script>
+</body>
+</html>
